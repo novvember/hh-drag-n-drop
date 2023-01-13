@@ -4,15 +4,24 @@
   padding: 1em;
   box-sizing: border-box;
   min-height: 400px;
-  background-color: var(--zone);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
 }
 
 .zone_type_spawn {
   width: 100px;
   aspect-ratio: 1;
   min-height: auto;
-  padding: 0;
+  padding: 0.5em;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zone_type_spawn:hover,
+.zone_type_drop_active {
+  background-color: rgba(255, 255, 255, 0.13);
 }
 
 .zone_type_drop-grid {
@@ -20,4 +29,21 @@
   gap: 1em;
   flex-wrap: wrap;
   align-content: flex-start;
+}
+
+.zone__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+
+  text-align: center;
+  color: var(--zone-title);
+}
+
+.zone_type_spawn .zone__title {
+  font-size: 1em;
 }
