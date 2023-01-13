@@ -1,0 +1,9 @@
+@import url(../vendor/normalize.css);
+
+@import url(../blocks/root.css);
+@import url(../blocks/content.css);
+@import url(../blocks/header.css);
+@import url(../blocks/main.css);
+@import url(../blocks/zone.css);
+@import url(../blocks/box.css);
+@import url(../blocks/footer.css);

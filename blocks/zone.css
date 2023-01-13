@@ -1,0 +1,23 @@
+.zone {
+  position: relative;
+  border-radius: 0.5em;
+  padding: 1em;
+  box-sizing: border-box;
+  min-height: 400px;
+  background-color: var(--zone);
+}
+
+.zone_type_spawn {
+  width: 100px;
+  aspect-ratio: 1;
+  min-height: auto;
+  padding: 0;
+  background-color: transparent;
+}
+
+.zone_type_drop-grid {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
