@@ -5,7 +5,6 @@ html {
 .root {
   overflow-x: hidden;
   overflow-y: auto;
-  height: max-content;
   touch-action: none;
   display: flex;
   flex-direction: column;

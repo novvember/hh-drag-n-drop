@@ -34,8 +34,6 @@ function addElementToGridZone(element) {
   gridDropZone.append(element);
 }
 
-function getContainerLocalCoords(element, container) {}
-
 function addElementToFreeZone(element, { localX, localY }) {
   const zone = freeDropZone;
 
