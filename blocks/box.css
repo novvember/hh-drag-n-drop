@@ -1,12 +1,13 @@
 .box {
+  display: block;
   width: 100px;
   aspect-ratio: 1;
   border-radius: 50%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 90px;
   line-height: 1;
+  user-select: none;
+
 }

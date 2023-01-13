@@ -5,11 +5,13 @@ export default class DragNDrop {
     dropZoneSelector,
     onMouseOver,
     onMouseOut,
+    onDrop,
   }) {
     this._element = element;
     this._dropZoneSelector = dropZoneSelector;
     this._onMouseOver = onMouseOver;
     this._onMouseOut = onMouseOut;
+    this._onDrop = onDrop;
 
     this._currentDropZone = null;
     this._handleMouseMove = this._handleMouseMove.bind(this);
@@ -62,6 +64,8 @@ export default class DragNDrop {
   _handleMouseUp(evt) {
     document.removeEventListener('mousemove', this._handleMouseMove);
     this._element.removeEventListener('mouseup', this._handleMouseUp);
+    if (this._currentDropZone) this._handleMouseOut();
+    this._element.style.cursor = 'auto';
 
     if (!this._currentDropZone) {
       this._element.remove();
