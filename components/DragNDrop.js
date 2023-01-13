@@ -28,8 +28,8 @@ export default class DragNDrop {
     document.body.append(this._element);
     this._moveTo(pageX, pageY);
 
-    document.addEventListener('mousemove', this._handleMouseMove);
-    this._element.addEventListener('mouseup', this._handleMouseUp);
+    document.addEventListener('pointermove', this._handleMouseMove);
+    this._element.addEventListener('pointerup', this._handleMouseUp);
   }
 
   _moveTo(pageX, pageY) {
@@ -62,8 +62,8 @@ export default class DragNDrop {
   }
 
   _handleMouseUp(evt) {
-    document.removeEventListener('mousemove', this._handleMouseMove);
-    this._element.removeEventListener('mouseup', this._handleMouseUp);
+    document.removeEventListener('pointermove', this._handleMouseMove);
+    this._element.removeEventListener('pointerup', this._handleMouseUp);
     if (this._currentDropZone) this._handleMouseOut();
     this._element.style.cursor = 'auto';
     this._element.style.position = 'static';

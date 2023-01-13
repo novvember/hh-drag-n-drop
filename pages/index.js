@@ -84,4 +84,4 @@ function handleSpawnZoneMouseDown(evt) {
   });
 }
 
-spawnZone.addEventListener('mousedown', handleSpawnZoneMouseDown);
+spawnZone.addEventListener('pointerdown', handleSpawnZoneMouseDown);
