@@ -3,11 +3,10 @@ html {
 }
 
 .root {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
   /* Шрифт для всей страницы */
   font-family: 'Raleway', Helvetica, Arial, sans-serif;
   line-height: 1.4;

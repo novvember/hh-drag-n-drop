@@ -3,9 +3,9 @@
   border-radius: 0.5em;
   padding: 1em;
   box-sizing: border-box;
-  min-height: 300px;
+  min-height: 400px;
   background-color: rgba(255, 255, 255, 0.05);
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-radius 0.2s;
 }
 
 .zone_type_spawn {
@@ -19,7 +19,11 @@
   align-items: center;
 }
 
-.zone_type_spawn:hover,
+.zone_type_spawn:hover {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .zone_type_drop_active {
   background-color: rgba(255, 255, 255, 0.08);
 }
@@ -29,7 +33,6 @@
   gap: 1em;
   flex-wrap: wrap;
   align-content: flex-start;
-  
 }
 
 .zone__title {
