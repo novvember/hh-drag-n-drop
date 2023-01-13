@@ -66,9 +66,16 @@ export default class DragNDrop {
     this._element.removeEventListener('mouseup', this._handleMouseUp);
     if (this._currentDropZone) this._handleMouseOut();
     this._element.style.cursor = 'auto';
+    this._element.style.position = 'static';
 
     if (!this._currentDropZone) {
       this._element.remove();
+    } else {
+      this._onDrop({
+        element: this._element,
+        zone: this._currentDropZone,
+        coords: { pageX: evt.pageX, pageY: evt.pageY },
+      });
     }
   }
 

@@ -30,6 +30,14 @@ function unfocusZone(element) {
   element.classList.remove(ACTIVE_ZONE_CLASS);
 }
 
+function handleDrop({ element, zone, coords }) {
+  if (zone === gridDropZone) {
+    zone.append(element);
+  } else {
+    element.remove();
+  }
+}
+
 function handleSpawnZoneMouseDown(evt) {
   const box = createNewBox();
 
@@ -39,6 +47,7 @@ function handleSpawnZoneMouseDown(evt) {
     dropZoneSelector: DROP_ZONE_SELECTOR,
     onMouseOver: focusZone,
     onMouseOut: unfocusZone,
+    onDrop: handleDrop,
   });
 }
 
