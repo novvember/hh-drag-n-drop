@@ -34,35 +34,14 @@ function addElementToGridZone(element) {
   gridDropZone.append(element);
 }
 
-function addElementToFreeZone(element, coords) {
+function getContainerLocalCoords(element, container) {}
+
+function addElementToFreeZone(element, { localX, localY }) {
   const zone = freeDropZone;
 
-  const {
-    x: zoneX,
-    y: zoneY,
-    width: zoneWidth,
-    height: zoneHeight,
-  } = zone.getBoundingClientRect();
-
-  let x = coords.pageX - element.offsetWidth / 2 - zoneX;
-
-  if (x < 0) {
-    x = 0;
-  } else if (x > zoneWidth - element.offsetWidth) {
-    x = zoneWidth - element.offsetWidth;
-  }
-
-  let y = coords.pageY - element.offsetHeight / 2 - zoneY;
-
-  if (y < 0) {
-    y = 0;
-  } else if (y > zoneHeight - element.offsetHeight) {
-    y = zoneHeight - element.offsetHeight;
-  }
-
   element.style.position = 'absolute';
-  element.style.left = x + 'px';
-  element.style.top = y + 'px';
+  element.style.left = localX + 'px';
+  element.style.top = localY + 'px';
 
   zone.append(element);
 }

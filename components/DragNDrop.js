@@ -13,7 +13,7 @@ export default class DragNDrop {
     this._onMouseOut = onMouseOut;
     this._onDrop = onDrop;
 
-    this._currentDropZone = null;
+    this._dropZone = null;
     this._handleMouseMove = this._handleMouseMove.bind(this);
     this._handleMouseUp = this._handleMouseUp.bind(this);
 
@@ -41,22 +41,22 @@ export default class DragNDrop {
     this._moveTo(evt.pageX, evt.pageY);
 
     this._element.style.visibility = 'hidden';
-    const elementBelow = document.elementFromPoint(evt.pageX, evt.pageY);
+    const elementBelow = document.elementFromPoint(evt.clientX, evt.clientY);
     this._element.style.visibility = null;
 
     if (!elementBelow) return;
 
-    const newZone = elementBelow.closest(this._dropZoneSelector);
+    const currentDropZone = elementBelow.closest(this._dropZoneSelector);
 
-    if (!this._currentDropZone && newZone) {
-      this._currentDropZone = newZone;
+    if (!this._dropZone && currentDropZone) {
+      this._dropZone = currentDropZone;
       this._handleMouseOver();
-    } else if (this._currentDropZone && !newZone) {
+    } else if (this._dropZone && !currentDropZone) {
       this._handleMouseOut();
-      this._currentDropZone = null;
-    } else if (this._currentDropZone !== newZone) {
+      this._dropZone = null;
+    } else if (this._dropZone !== currentDropZone) {
       this._handleMouseOut();
-      this._currentDropZone = newZone;
+      this._dropZone = currentDropZone;
       this._handleMouseOver();
     }
   }
@@ -65,29 +65,66 @@ export default class DragNDrop {
     document.removeEventListener('pointermove', this._handleMouseMove);
     document.removeEventListener('pointerup', this._handleMouseUp);
 
-    if (this._currentDropZone) this._handleMouseOut();
+    if (this._dropZone) this._handleMouseOut();
 
     this._element.style.cursor = 'auto';
     this._element.style.position = 'static';
 
-    if (!this._currentDropZone) {
+    if (!this._dropZone) {
       this._element.remove();
     } else {
+      const [localX, localY] = this._getLocalCoords({
+        pageX: evt.pageX,
+        pageY: evt.pageY,
+      });
+
       this._onDrop({
         element: this._element,
-        zone: this._currentDropZone,
-        coords: { pageX: evt.pageX, pageY: evt.pageY },
+        zone: this._dropZone,
+        coords: { localX, localY },
       });
     }
   }
 
   _handleMouseOver() {
-    this._onMouseOver(this._currentDropZone);
+    this._onMouseOver(this._dropZone);
     this._element.style.cursor = 'pointer';
   }
 
   _handleMouseOut() {
-    this._onMouseOut(this._currentDropZone);
+    this._onMouseOut(this._dropZone);
     this._element.style.cursor = 'no-drop';
+  }
+
+  _getLocalCoords({ pageX, pageY }) {
+    const {
+      width: elementWidth,
+      height: elementHeight,
+    } = this._element.getBoundingClientRect();
+
+    const {
+      x: containerX,
+      y: containerY,
+      width: containerWidth,
+      height: containerHeight,
+    } = this._dropZone.getBoundingClientRect();
+
+    let x = pageX - elementWidth / 2 - containerX - window.pageXOffset;
+
+    if (x < 0) {
+      x = 0;
+    } else if (x > containerWidth - elementWidth) {
+      x = containerWidth - elementWidth;
+    }
+
+    let y = pageY - elementHeight / 2 - containerY - window.pageYOffset;
+
+    if (y < 0) {
+      y = 0;
+    } else if (y > containerHeight - elementHeight) {
+      y = containerHeight - elementHeight;
+    }
+
+    return [x, y];
   }
 }
