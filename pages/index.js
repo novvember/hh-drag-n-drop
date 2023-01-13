@@ -1,3 +1,4 @@
+import DragNDrop from '../components/DragNDrop.js';
 import getRandomEmoji from '../utils/getRandomEmoji.js';
 
 const spawnZone = document.querySelector('.zone_type_spawn');
@@ -30,51 +31,15 @@ function unfocusZone(element) {
 }
 
 function handleSpawnZoneMouseDown(evt) {
-  function moveBoxTo(pageX, pageY) {
-    box.style.left = pageX - box.offsetWidth / 2 + 'px';
-    box.style.top = pageY - box.offsetHeight / 2 + 'px';
-  }
-
-  function handleMouseMove(evt) {
-    moveBoxTo(evt.pageX, evt.pageY);
-
-    box.style.visibility = 'hidden';
-    const elementBelow = document.elementFromPoint(evt.pageX, evt.pageY);
-    box.style.visibility = null;
-
-    if (!elementBelow) return;
-
-    const newZone = elementBelow.closest(DROP_ZONE_SELECTOR);
-
-    if (!currentZone && newZone) {
-      currentZone = newZone;
-      focusZone(currentZone);
-    } else if (currentZone && !newZone) {
-      unfocusZone(currentZone);
-      currentZone = null;
-    } else if (currentZone !== newZone) {
-      unfocusZone(currentZone);
-      currentZone = newZone;
-      focusZone(currentZone);
-    }
-  }
-
-  function handleMouseUp() {
-    document.removeEventListener('mousemove', handleMouseMove);
-    box.removeEventListener('mouseup', handleMouseUp);
-  }
-
   const box = createNewBox();
-  box.style.position = 'absolute';
-  box.style.zIndex = 1;
 
-  document.body.append(box);
-  moveBoxTo(evt.pageX, evt.pageY);
-
-  let currentZone = null;
-
-  document.addEventListener('mousemove', handleMouseMove);
-  box.addEventListener('mouseup', handleMouseUp);
+  const dragNDrop = new DragNDrop({
+    element: box,
+    startCoords: { pageX: evt.pageX, pageY: evt.pageY },
+    dropZoneSelector: DROP_ZONE_SELECTOR,
+    onMouseOver: focusZone,
+    onMouseOut: unfocusZone,
+  });
 }
 
 spawnZone.addEventListener('mousedown', handleSpawnZoneMouseDown);
