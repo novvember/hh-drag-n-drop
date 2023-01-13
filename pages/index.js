@@ -22,12 +22,12 @@ function createNewBox() {
   return box;
 }
 
-function focusZone(element) {
-  element.classList.add(ACTIVE_ZONE_CLASS);
+function focusZone(zone) {
+  zone.classList.add(ACTIVE_ZONE_CLASS);
 }
 
-function unfocusZone(element) {
-  element.classList.remove(ACTIVE_ZONE_CLASS);
+function unfocusZone(zone) {
+  zone.classList.remove(ACTIVE_ZONE_CLASS);
 }
 
 function addElementToGridZone(element) {
@@ -45,14 +45,20 @@ function addElementToFreeZone(element, coords) {
   } = zone.getBoundingClientRect();
 
   let x = coords.pageX - element.offsetWidth / 2 - zoneX;
-  if (x < 0) x = 0;
-  else if (x > zoneWidth - element.offsetWidth)
+
+  if (x < 0) {
+    x = 0;
+  } else if (x > zoneWidth - element.offsetWidth) {
     x = zoneWidth - element.offsetWidth;
+  }
 
   let y = coords.pageY - element.offsetHeight / 2 - zoneY;
-  if (y < 0) y = 0;
-  else if (y > zoneHeight - element.offsetHeight)
+
+  if (y < 0) {
+    y = 0;
+  } else if (y > zoneHeight - element.offsetHeight) {
     y = zoneHeight - element.offsetHeight;
+  }
 
   element.style.position = 'absolute';
   element.style.left = x + 'px';
