@@ -37,6 +37,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  padding-inline: 0.5em;
   box-sizing: border-box;
   margin: 0;
 
