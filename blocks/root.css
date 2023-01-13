@@ -3,6 +3,7 @@ html {
 }
 
 .root {
+  touch-action: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
