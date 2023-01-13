@@ -12,7 +12,7 @@
   aspect-ratio: 1;
   min-height: auto;
   padding: 0;
-  background-color: transparent;
+  cursor: pointer;
 }
 
 .zone_type_drop-grid {
