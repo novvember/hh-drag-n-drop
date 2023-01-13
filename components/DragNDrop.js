@@ -66,9 +66,7 @@ export default class DragNDrop {
     document.removeEventListener('pointerup', this._handleMouseUp);
 
     if (this._dropZone) this._handleMouseOut();
-
-    this._element.style.cursor = 'auto';
-    this._element.style.position = 'static';
+    this._element.removeAttribute('style');
 
     if (!this._dropZone) {
       this._element.remove();
