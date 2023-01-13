@@ -9,6 +9,17 @@
   gap: 1em;
 }
 
+@media (max-width: 425px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+      'spawn'
+      'grid'
+      'free';
+  }
+}
+
 .main__spawn-zone {
   grid-area: spawn;
 }

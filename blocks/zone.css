@@ -8,6 +8,12 @@
   transition: background-color 0.2s, border-radius 0.2s, transform 0.5s;
 }
 
+@media (max-width: 425px) {
+  .zone {
+    min-height: 200px;
+  }
+}
+
 .zone_type_spawn {
   width: 100px;
   aspect-ratio: 1;
