@@ -1,0 +1,8 @@
+.header {
+  padding-block: 1em;
+}
+
+.header__title {
+  margin: 0;
+  text-align: center;
+}

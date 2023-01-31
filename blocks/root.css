@@ -1,0 +1,30 @@
+html {
+  height: -webkit-fill-available;
+}
+
+.root {
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Шрифт для всей страницы */
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  /* Сглаживание шрифтов */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  /* Цветовая схема */
+  --surface: #1b1e26;
+  --on-surface: #fff;
+  --zone: #2f323a;
+  --zone-title: #65686e;
+  /* Цвета страницы */
+  background-color: var(--surface);
+  color: var(--on-surface);
+}

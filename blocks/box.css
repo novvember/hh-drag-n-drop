@@ -1,0 +1,13 @@
+.box {
+  display: block;
+  width: 100px;
+  aspect-ratio: 1;
+  border-radius: 80%;
+  display: flex;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  line-height: 1;
+  user-select: none;
+}

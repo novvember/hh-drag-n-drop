@@ -1,0 +1,33 @@
+.main {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'spawn .'
+    'grid free';
+  gap: 1em;
+}
+
+@media (max-width: 425px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+      'spawn'
+      'grid'
+      'free';
+  }
+}
+
+.main__spawn-zone {
+  grid-area: spawn;
+}
+
+.main__grid-zone {
+  grid-area: grid;
+}
+
+.main__free-zone {
+  grid-area: free;
+}
